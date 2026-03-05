@@ -11,36 +11,8 @@ function resetCalculatorData() {
         firstOperand: undefined,
         secondOperand: undefined,
         operation: undefined,
+        result: undefined,
     }
-}
-
-
-/**
-    Calculator methods
- */
-function operate(calculatorData) {
-
-    if (isNotOperatable(calculatorData)) {
-        return null; //TODO check it out later
-    }
-
-    switch (calculatorData.operation) {
-        case "+":
-            return calculatorData.firstOperand + calculatorData.secondOperand;
-
-        case "-":
-            return calculatorData.firstOperand - calculatorData.secondOperand;
-
-        case "*":
-            return calculatorData.firstOperand * calculatorData.secondOperand;
-
-        case "/":
-            return calculatorData.firstOperand / calculatorData.secondOperand;
-    }
-}
-
-function isNotOperatable(calculatorData) {
-    return isNaN(calculatorData.firstOperand) || isNaN(calculatorData.secondOperand) || calculatorData.operation == undefined
 }
 
 
@@ -69,4 +41,38 @@ function operationButtonClick(operation) {
     if (calculatorData.operation == undefined && acceptedOperations.includes(operation)) {
         calculatorData.operation = operation;
     }
+}
+
+
+/**
+ *  For =
+ */
+function operate() {
+    if (canBeOperated(calculatorData)) {
+        switch (calculatorData.operation) {
+            case "+":
+                calculatorData.result = calculatorData.firstOperand + calculatorData.secondOperand;
+                break;
+
+            case "-":
+                calculatorData.result = calculatorData.firstOperand - calculatorData.secondOperand;
+                break;
+
+            case "*":
+                calculatorData.result = calculatorData.firstOperand * calculatorData.secondOperand;
+                break;
+
+            case "/":
+                calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
+                break;
+        }
+        console.log(calculatorData.result)
+    }
+    else {
+        console.log("invalid operation")
+    }
+}
+
+function canBeOperated(calculatorData) {
+    return !isNaN(calculatorData.firstOperand) && !isNaN(calculatorData.secondOperand) && calculatorData.operation != undefined
 }

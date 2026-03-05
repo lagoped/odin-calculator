@@ -17,29 +17,29 @@
             <!-- TODO button to clear up -->
             <div class="calculator-buttons-column">
                 <button class="calculator-button" onclick="numberButtonClick(7)">7</button>
-                <button class="calculator-button">4</button>
-                <button class="calculator-button">1</button>
-                <button class="calculator-button">0</button>
+                <button class="calculator-button" onclick="numberButtonClick(4)">4</button>
+                <button class="calculator-button" onclick="numberButtonClick(1)">1</button>
+                <button class="calculator-button" onclick="numberButtonClick(0)">0</button>
             </div>
 
             <div class="calculator-buttons-column">
-                <button class="calculator-button">8</button>
-                <button class="calculator-button">5</button>
-                <button class="calculator-button">2</button>
-                <button class="calculator-button"></button>
+                <button class="calculator-button" onclick="numberButtonClick(8)">8</button>
+                <button class="calculator-button" onclick="numberButtonClick(5)">5</button>
+                <button class="calculator-button" onclick="numberButtonClick(2)">2</button>
+                <div class="calculator-button" ></div>
             </div>
 
             <div class="calculator-buttons-column">
-                <button class="calculator-button">9</button>
-                <button class="calculator-button">6</button>
-                <button class="calculator-button">3</button>
-                <button class="calculator-button">=</button>
+                <button class="calculator-button" onclick="numberButtonClick(9)">9</button>
+                <button class="calculator-button" onclick="numberButtonClick(6)">6</button>
+                <button class="calculator-button" onclick="numberButtonClick(3)">3</button>
+                <button class="calculator-button" onclick="operate()">=</button>
             </div>
 
             <div class="calculator-buttons-column">
-                <button class="calculator-button">/</button>
-                <button class="calculator-button">X</button>
-                <button class="calculator-button">-</button>
+                <button class="calculator-button" onclick="operationButtonClick('/')">/</button>
+                <button class="calculator-button" onclick="operationButtonClick('*')">X</button>
+                <button class="calculator-button" onclick="operationButtonClick('-')">-</button>
                 <button class="calculator-button" onclick="operationButtonClick('+')">+</button>
             </div>
 
