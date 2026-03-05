@@ -3,9 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
+    <!-- TODO inspiration : https://www.theworkplacedepot.co.uk/media/wysiwyg/CALCULATOR-1-CO-01.jpg -->
 <body>
-    
+    <div class="calculator-body">
+        <div class="calculator-screen">Screen</div>
+        <div class="calculator-buttons">
+
+            <!-- TODO button to clear up -->
+            <div class="calculator-buttons-column">
+                <button class="calculator-button" onclick="numberButtonClick(7)">7</button>
+                <button class="calculator-button">4</button>
+                <button class="calculator-button">1</button>
+                <button class="calculator-button">0</button>
+            </div>
+
+            <div class="calculator-buttons-column">
+                <button class="calculator-button">8</button>
+                <button class="calculator-button">5</button>
+                <button class="calculator-button">2</button>
+                <button class="calculator-button"></button>
+            </div>
+
+            <div class="calculator-buttons-column">
+                <button class="calculator-button">9</button>
+                <button class="calculator-button">6</button>
+                <button class="calculator-button">3</button>
+                <button class="calculator-button">=</button>
+            </div>
+
+            <div class="calculator-buttons-column">
+                <button class="calculator-button">/</button>
+                <button class="calculator-button">X</button>
+                <button class="calculator-button">-</button>
+                <button class="calculator-button" onclick="operationButtonClick('+')">+</button>
+            </div>
+
+        </div>
+    </div>
 </body>
+<script src="scripts/calculator.js"></script>
 </html>
