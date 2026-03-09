@@ -26,8 +26,9 @@ function numberButtonClick(number) {
 
     if (calculatorData.operation == undefined || calculatorData.result != undefined) { //still on first number, or new series
 
-        if(calculatorData.result != undefined) {
+        if (calculatorData.result != undefined) {
             calculatorData = initializeCalculatorData();
+            updateScreenEquation();
         }
 
         calculatorData.firstOperand = calculatorData.firstOperand ? parseInt("" + calculatorData.firstOperand + number) : number;
@@ -57,45 +58,27 @@ function operationButtonClick(operation) {
 
 
 function chainOperation(operation) {
-    if (calculatorData.result != undefined) {
-
-        console.log("Chain")
-        calculatorData.firstOperand = calculatorData.result;
-        calculatorData.operation = operation;
-        calculatorData.secondOperand = undefined;
-        calculatorData.result = undefined
-
-        updateScreenAfterOperation();
+    if (calculatorData.result == undefined) {
+        operate();
+        updateScreenResult(calculatorData.result);
     }
-    else {
-        console.log("operate from chain")
-        operate()
-    }
+
+    calculatorData.firstOperand = calculatorData.result;
+    calculatorData.operation = operation;
+    calculatorData.secondOperand = undefined;
+    calculatorData.result = undefined
+
+    updateScreenEquation();
+    updateScreenInput();
 }
 
 
 /**
  *  For =
  */
-function operate() {
+function equalButtonClick() {
     if (canBeOperated(calculatorData)) {
-        switch (calculatorData.operation) {
-            case "+":
-                calculatorData.result = calculatorData.firstOperand + calculatorData.secondOperand;
-                break;
-
-            case "-":
-                calculatorData.result = calculatorData.firstOperand - calculatorData.secondOperand;
-                break;
-
-            case "*":
-                calculatorData.result = calculatorData.firstOperand * calculatorData.secondOperand;
-                break;
-
-            case "/":
-                calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
-                break;
-        }
+        operate();
 
         updateScreenResult(calculatorData.result);
         updateScreenAfterOperation();
@@ -105,10 +88,34 @@ function operate() {
     }
 }
 
+
 function canBeOperated(calculatorData) {
     return !isNaN(calculatorData.firstOperand) && !isNaN(calculatorData.secondOperand) && calculatorData.operation != undefined
 }
 
+function operate() {
+    switch (calculatorData.operation) {
+        case "+":
+            calculatorData.result = calculatorData.firstOperand + calculatorData.secondOperand;
+            break;
+
+        case "-":
+            calculatorData.result = calculatorData.firstOperand - calculatorData.secondOperand;
+            break;
+
+        case "*":
+            calculatorData.result = calculatorData.firstOperand * calculatorData.secondOperand;
+            break;
+
+        case "/":
+            calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
+            break;
+
+        default:
+            console.log("Operation not recognized");
+            break;
+    }
+}
 
 /*
     Update UI
@@ -129,6 +136,10 @@ function updateScreenEquation() {
 }
 
 function getCurrentEquation() {
+    if (calculatorData.firstOperand == undefined) {
+        return "";
+    }
+
     let equation = "" + calculatorData.firstOperand
 
     if (calculatorData.operation != undefined) {

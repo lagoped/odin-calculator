@@ -13,13 +13,13 @@
     <div class="calculator-body">
         <div class="calculator-screen">
             <div class="calculator-screen-data">
-                <div id="current-equation">Calcul</div>
-                <div id="equation-result">Resultat</div>
+                <div id="current-equation"></div>
+                <div id="equation-result"></div>
             </div>
-            <div id="current-input">Nombre en cours ici</div>
+            <div id="current-input" class="calculator-screen-input"></div>
         </div>
-        <div class="calculator-buttons">
 
+        <div class="calculator-buttons">
             <!-- TODO button to clear up -->
             <div class="calculator-buttons-column">
                 <button class="calculator-button" onclick="numberButtonClick(7)">7</button>
@@ -32,14 +32,14 @@
                 <button class="calculator-button" onclick="numberButtonClick(8)">8</button>
                 <button class="calculator-button" onclick="numberButtonClick(5)">5</button>
                 <button class="calculator-button" onclick="numberButtonClick(2)">2</button>
-                <div class="calculator-button"></div>
+                <button class="calculator-button" disabled></button>
             </div>
 
             <div class="calculator-buttons-column">
                 <button class="calculator-button" onclick="numberButtonClick(9)">9</button>
                 <button class="calculator-button" onclick="numberButtonClick(6)">6</button>
                 <button class="calculator-button" onclick="numberButtonClick(3)">3</button>
-                <button class="calculator-button" onclick="operate()">=</button>
+                <button class="calculator-button" onclick="equalButtonClick()">=</button>
             </div>
 
             <div class="calculator-buttons-column">
