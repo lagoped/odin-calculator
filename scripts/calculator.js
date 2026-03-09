@@ -24,7 +24,12 @@ function numberButtonClick(number) {
         return
     }
 
-    if (calculatorData.operation == undefined) { //still on first number
+    if (calculatorData.operation == undefined || calculatorData.result != undefined) { //still on first number, or new series
+
+        if(calculatorData.result != undefined) {
+            calculatorData = initializeCalculatorData();
+        }
+
         calculatorData.firstOperand = calculatorData.firstOperand ? parseInt("" + calculatorData.firstOperand + number) : number;
         updateScreenInput(calculatorData.firstOperand);
     }
@@ -42,8 +47,7 @@ function operationButtonClick(operation) {
 
         if (calculatorData.operation == undefined) {
             calculatorData.operation = operation;
-            updateScreenEquation();
-            updateScreenInput();
+            updateScreenAfterOperation();
         }
         else if (calculatorData.operation != undefined && calculatorData.secondOperand != undefined) {
             chainOperation(operation)
@@ -54,6 +58,8 @@ function operationButtonClick(operation) {
 
 function chainOperation(operation) {
     if (calculatorData.result != undefined) {
+
+        console.log("Chain")
         calculatorData.firstOperand = calculatorData.result;
         calculatorData.operation = operation;
         calculatorData.secondOperand = undefined;
@@ -62,6 +68,7 @@ function chainOperation(operation) {
         updateScreenAfterOperation();
     }
     else {
+        console.log("operate from chain")
         operate()
     }
 }
@@ -89,8 +96,9 @@ function operate() {
                 calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
                 break;
         }
-        updateScreenEquation()
-        updateScreenInput(calculatorData.result)
+
+        updateScreenResult(calculatorData.result);
+        updateScreenAfterOperation();
     }
     else {
         console.log("invalid operation")
@@ -107,7 +115,13 @@ function canBeOperated(calculatorData) {
 */
 
 function updateScreenInput(currentInput = "") {
+    console.log(currentInput)
+    console.log(calculatorData)
     document.getElementById("current-input").textContent = currentInput;
+}
+
+function updateScreenResult(currentResult = "") {
+    document.getElementById("equation-result").textContent = currentResult;
 }
 
 function updateScreenEquation() {
