@@ -12,7 +12,7 @@ body {
     margin: 20px;
 
     border: 2px solid black;
-    background-color:thistle;
+    background-color: #d65db1;
     width: 300px;
     height: 450px;
 }
@@ -25,7 +25,7 @@ body {
     width: 250px;
     height: 120px;
     border: 2px solid black;
-    background-color:honeydew;
+    background-color: honeydew;
 
     display: flex;
     flex-direction: column;
@@ -35,11 +35,11 @@ body {
 .calculator-screen-data {
     display: flex;
     justify-content: space-between;
-    margin:3px;
+    margin: 3px;
 }
 
-.calculator-screen-input  {
-    margin : 3px;
+.calculator-screen-input {
+    margin: 3px;
     align-self: flex-end;
 }
 
@@ -60,9 +60,28 @@ body {
 
 .calculator-button {
     border: 1px solid black;
+    border-radius: 3px;
     height: 50px;
     width: 50px;
     max-height: 50px;
     max-width: 50px;
     text-align: center;
 }
+
+.function-button {
+    background-color: #ff6f91;
+}
+
+.number-button {
+    background-color: #ff9671;
+}
+
+.operator-button {
+    background-color: #ffc75f;
+}
+
+.equal-button {
+    background-color: #f9f871;
+}
+
+/* #f9f871*/

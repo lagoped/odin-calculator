@@ -72,10 +72,6 @@ function chainOperation(operation) {
     updateScreenInput();
 }
 
-
-/**
- *  For =
- */
 function equalButtonClick() {
     if (canBeOperated(calculatorData)) {
         operate();
@@ -108,12 +104,54 @@ function operate() {
             break;
 
         case "/":
-            calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
-            break;
+            if (calculatorData.secondOperand === 0) {
+                alert("No divison by 0");
+                resetCalculatorData();
+                break;
+            }
+            else {
+                calculatorData.result = calculatorData.firstOperand / calculatorData.secondOperand;
+                break;
+            }
 
         default:
             console.log("Operation not recognized");
             break;
+    }
+}
+
+
+function resetCalculatorData() {
+    calculatorData = initializeCalculatorData();
+    updateScreenResult();
+    updateScreenAfterOperation();
+}
+
+function backspaceClick() {
+    if (calculatorData.operation == undefined && calculatorData.result == undefined) {
+
+        calculatorData.firstOperand = removeLastDigit(calculatorData.firstOperand);
+        calculatorData.firstOperand != undefined ? updateScreenInput(calculatorData.firstOperand) : updateScreenInput(); 
+    }
+    else if(calculatorData.result == undefined){
+        
+        calculatorData.secondOperand = removeLastDigit(calculatorData.secondOperand);
+        calculatorData.secondOperand != undefined ? updateScreenInput(calculatorData.secondOperand) : updateScreenInput(); 
+    }
+}
+
+function removeLastDigit(number) {
+    if(number == undefined){
+        return undefined;``
+    }
+
+    let numberToString = number.toString();
+
+    if (numberToString.length <= 1) {
+        return undefined
+    }
+    else {
+        return parseInt(numberToString.slice(0, -1));
     }
 }
 
